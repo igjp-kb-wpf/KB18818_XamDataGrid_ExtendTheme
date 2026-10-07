@@ -1,0 +1,90 @@
+<Window x:Class="XamDataGrid_ExtendTheme.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        xmlns:igDP="http://infragistics.com/DataPresenter"
+        xmlns:local="clr-namespace:XamDataGrid_ExtendTheme"
+        Title="XamDataGrid - 拡張テーマ(ConfigureControlMappings)の比較"
+        Height="580" Width="1380">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,6" FontWeight="Bold"
+                   Text="標準: Office2013Theme" />
+        <TextBlock Grid.Row="0" Grid.Column="2" Margin="0,0,0,6" FontWeight="Bold"
+                   Text="拡張: BrandOffice2013Theme(社内標準カラー)" />
+
+        <!-- 左: 標準のOffice2013テーマ -->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <ig:ThemeManager.Theme>
+                <ig:Office2013Theme />
+            </ig:ThemeManager.Theme>
+
+            <igDP:XamDataGrid DataSource="{Binding Orders}">
+                <igDP:XamDataGrid.FieldLayoutSettings>
+                    <igDP:FieldLayoutSettings AutoGenerateFields="False"
+                                              HighlightAlternateRecords="True"
+                                              SelectionTypeRecord="Extended" />
+                </igDP:XamDataGrid.FieldLayoutSettings>
+                <igDP:XamDataGrid.FieldSettings>
+                    <igDP:FieldSettings AllowEdit="False" CellClickAction="SelectRecord" />
+                </igDP:XamDataGrid.FieldSettings>
+                <igDP:XamDataGrid.FieldLayouts>
+                    <igDP:FieldLayout>
+                        <igDP:FieldLayout.Fields>
+                            <igDP:Field Name="OrderId" Label="注文ID" />
+                            <igDP:Field Name="Customer" Label="得意先" />
+                            <igDP:Field Name="Product" Label="商品" />
+                            <igDP:Field Name="Quantity" Label="数量" />
+                            <igDP:Field Name="Amount" Label="金額" />
+                            <igDP:Field Name="Status" Label="状態" />
+                        </igDP:FieldLayout.Fields>
+                    </igDP:FieldLayout>
+                </igDP:XamDataGrid.FieldLayouts>
+            </igDP:XamDataGrid>
+        </Grid>
+
+        <!-- 右: Office2013Themeを拡張した社内標準テーマ(上記と同じグリッド定義) -->
+        <Grid Grid.Row="1" Grid.Column="2">
+            <ig:ThemeManager.Theme>
+                <local:BrandOffice2013Theme />
+            </ig:ThemeManager.Theme>
+
+            <igDP:XamDataGrid DataSource="{Binding Orders}">
+                <igDP:XamDataGrid.FieldLayoutSettings>
+                    <igDP:FieldLayoutSettings AutoGenerateFields="False"
+                                              HighlightAlternateRecords="True"
+                                              SelectionTypeRecord="Extended" />
+                </igDP:XamDataGrid.FieldLayoutSettings>
+                <igDP:XamDataGrid.FieldSettings>
+                    <igDP:FieldSettings AllowEdit="False" CellClickAction="SelectRecord" />
+                </igDP:XamDataGrid.FieldSettings>
+                <igDP:XamDataGrid.FieldLayouts>
+                    <igDP:FieldLayout>
+                        <igDP:FieldLayout.Fields>
+                            <igDP:Field Name="OrderId" Label="注文ID" />
+                            <igDP:Field Name="Customer" Label="得意先" />
+                            <igDP:Field Name="Product" Label="商品" />
+                            <igDP:Field Name="Quantity" Label="数量" />
+                            <igDP:Field Name="Amount" Label="金額" />
+                            <igDP:Field Name="Status" Label="状態" />
+                        </igDP:FieldLayout.Fields>
+                    </igDP:FieldLayout>
+                </igDP:XamDataGrid.FieldLayouts>
+            </igDP:XamDataGrid>
+        </Grid>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,8,0,0"
+                   Foreground="#FF666666"
+                   Text="行にマウスを載せる/クリックして選択する/列見出しにマウスを載せる、で両者の色の違いを確認できます。" />
+    </Grid>
+</Window>

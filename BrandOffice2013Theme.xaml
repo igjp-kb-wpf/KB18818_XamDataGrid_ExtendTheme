@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:igDP="http://infragistics.com/DataPresenter">
+    <!--
+        BrandOffice2013Theme が XamDataGrid のリソースとして読み込むディクショナリ。
+    -->
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Infragistics.WPF.Themes.Office2013;component/Themes/Office2013.XamDataPresenter.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- ============================ 社内標準カラー ============================ -->
+    <!-- アクセント(ティール系) -->
+    <SolidColorBrush x:Key="BrandAccentBrush" Color="#FF0C6659" />
+
+    <!-- 行(レコード) -->
+    <SolidColorBrush x:Key="BrandRowAlternateBrush" Color="#FFEAF4F2" />
+    <SolidColorBrush x:Key="BrandRowAlternateBorderBrush" Color="#FFC7DDD8" />
+    <SolidColorBrush x:Key="BrandRowHoverBrush" Color="#FFCCE6E1" />
+    <SolidColorBrush x:Key="BrandRowHoverBorderBrush" Color="#FF7FBDB1" />
+    <SolidColorBrush x:Key="BrandRowActiveBrush" Color="#FFBFDFD8" />
+    <SolidColorBrush x:Key="BrandRowSelectedBrush" Color="#FFA6D3CA" />
+
+    <!-- ヘッダー(列見出し) -->
+    <SolidColorBrush x:Key="BrandHeaderBackgroundBrush" Color="#FFD3E7E3" />
+    <SolidColorBrush x:Key="BrandHeaderForegroundBrush" Color="#FF083F38" />
+    <SolidColorBrush x:Key="BrandHeaderHoverBrush" Color="#FFB9DDD5" />
+    <SolidColorBrush x:Key="BrandHeaderBorderBrush" Color="#FF94C1B7" />
+
+    <!-- RecordSelectorテンプレート内の背景インジケータ色(Office2013既定キー) -->
+    <SolidColorBrush x:Key="{ComponentResourceKey {x:Type igDP:XamDataGrid}, CellVPBackgroundPrimary}" Color="#FFCCE6E1" />
+    <SolidColorBrush x:Key="{ComponentResourceKey {x:Type igDP:XamDataGrid}, CellVPBackgroundActive}" Color="#FFA6D3CA" />
+    <SolidColorBrush x:Key="{ComponentResourceKey {x:Type igDP:XamDataGrid}, FilterActiveBackgroundBrush}" Color="#FF0C6659" />
+
+    <!-- ============================ 暗黙スタイルの上書き ============================ -->
+    <!--
+        標準スタイルを BasedOn で引き継ぎ、ホバー/選択/アクティブ/ゼブラの
+        ブラシプロパティだけを社内標準色に置き換える。
+        これらのプロパティは「既定のテンプレートが IsMouseOver = true 等のときに
+        適用するブラシ」として公開されている。
+    -->
+
+    <!-- 行全体(DataRecordCellArea): ゼブラ・ホバー・アクティブ・選択 -->
+    <Style TargetType="{x:Type igDP:DataRecordCellArea}"
+           BasedOn="{StaticResource {x:Type igDP:DataRecordCellArea}}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BackgroundAlternate" Value="{StaticResource BrandRowAlternateBrush}" />
+        <Setter Property="BorderAlternateBrush" Value="{StaticResource BrandRowAlternateBorderBrush}" />
+        <Setter Property="BackgroundHover" Value="{StaticResource BrandRowHoverBrush}" />
+        <Setter Property="BorderHoverBrush" Value="{StaticResource BrandRowHoverBorderBrush}" />
+        <Setter Property="BackgroundActive" Value="{StaticResource BrandRowActiveBrush}" />
+        <Setter Property="BorderActiveBrush" Value="{StaticResource BrandAccentBrush}" />
+        <Setter Property="BackgroundSelected" Value="{StaticResource BrandRowSelectedBrush}" />
+        <Setter Property="BorderSelectedBrush" Value="{StaticResource BrandAccentBrush}" />
+    </Style>
+
+    <!-- 個々のセル(CellValuePresenter): ホバー枠・アクティブ・選択 -->
+    <Style TargetType="{x:Type igDP:CellValuePresenter}"
+           BasedOn="{StaticResource {x:Type igDP:CellValuePresenter}}">
+        <Setter Property="BorderHoverBrush" Value="{StaticResource BrandRowHoverBorderBrush}" />
+        <Setter Property="BackgroundActive" Value="{StaticResource BrandRowActiveBrush}" />
+        <Setter Property="BorderActiveBrush" Value="{StaticResource BrandAccentBrush}" />
+        <Setter Property="BackgroundSelected" Value="{StaticResource BrandRowSelectedBrush}" />
+        <Setter Property="BorderSelectedBrush" Value="{StaticResource BrandAccentBrush}" />
+    </Style>
+
+    <!-- 列見出し(LabelPresenter): 背景・文字色・ホバー・枠線 -->
+    <Style TargetType="{x:Type igDP:LabelPresenter}"
+           BasedOn="{StaticResource {x:Type igDP:LabelPresenter}}">
+        <Setter Property="Background" Value="{StaticResource BrandHeaderBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource BrandHeaderForegroundBrush}" />
+        <Setter Property="LabelHighlight" Value="{StaticResource BrandHeaderHoverBrush}" />
+        <Setter Property="OuterBorderBrush" Value="{StaticResource BrandHeaderBorderBrush}" />
+    </Style>
+
+</ResourceDictionary>

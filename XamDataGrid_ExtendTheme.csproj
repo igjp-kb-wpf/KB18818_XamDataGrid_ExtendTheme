@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>XamDataGrid_ExtendTheme</AssemblyName>
+    <RootNamespace>XamDataGrid_ExtendTheme</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      製品版(ライセンス済み)パッケージ。Trialサフィックスなし。
+      利用にはInfragisticsのライセンス済みNuGetフィードの登録が必要です。
+      Source: https://packages.infragistics.com/nuget/licensed/v3/index.json
+    -->
+    <PackageReference Include="Infragistics.WPF.DataGrids" Version="26.1.54" />
+
+    <!-- 拡張のベースにするOffice2013テーマ(Office2013Themeクラスを含む) -->
+    <PackageReference Include="Infragistics.WPF.Themes.Office2013" Version="26.1.54" />
+  </ItemGroup>
+
+</Project>
